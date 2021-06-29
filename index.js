@@ -6,7 +6,12 @@ const passport = require('passport');
 require('./models/User');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI)
+try {
+    mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
+
+} catch (error) {
+    console.error(error);
+}
 
 const app = express();
 
