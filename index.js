@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+require('dotenv').config()
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./models/User');
 require('./services/passport');
 
 try {
-    mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
+    mongoose.connect(process.env.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
 
 } catch (error) {
     console.error(error);
@@ -18,7 +18,7 @@ const app = express();
 app.use(
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
+        keys: [process.env.cookieKey]
     })
 )
 app.use(passport.initialize());
