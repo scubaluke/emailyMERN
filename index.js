@@ -4,6 +4,7 @@ const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./models/User');
+require('./models/Survey')
 require('./services/passport');
 
 try {
@@ -27,6 +28,7 @@ app.use(express.json())
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app)
+require('./routes/surveyRoutes')(app)
 
 if(process.env.NODE_ENV === 'production') {
     // express will server up  production assets like  main.js & main.css
