@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 import SurveyField from './SurveyField'
 import validateEmails from '../../utils/validateEmails'
-import formFields from './SurveyField'
+import formFields from './formFields'
 
 
 class SurveyForm extends Component {
@@ -28,7 +28,7 @@ class SurveyForm extends Component {
 function validate(values) {
     const errors = {}
 
-    errors.email = validateEmails(values.email || '')
+    errors.recipients = validateEmails(values.recipients || '')
 
     formFields.forEach(({name}) => { if(!values[name]) {
         errors[name] = `you must provide a ${name}`

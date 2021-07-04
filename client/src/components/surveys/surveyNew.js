@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import SurveyForm from './SurveyForm'
 import SurveyFormReview from './SurveyFormReview'
+import { reduxForm } from 'redux-form'
 
 
-export default function SurveyNew() {
+function SurveyNew() {
     const [showFormReview, setShowFormReview] = useState(false)
     // setShowFormReview() {
     // }
@@ -17,18 +18,8 @@ export default function SurveyNew() {
     )
 }
 
-
-// export default class SurveyNew extends Component {
-//     state = { showFormReview: false  };
-
-//     render() {
-//         return (
-//             <div>
-//                 { showFormReview ? <SurveyForm /> : <SurveyFormReview /> }
-                
-//             </div>
-//         )
-//     }
-// }
+export default reduxForm({
+    form: 'surveyForm'
+})(SurveyNew)
 
 
