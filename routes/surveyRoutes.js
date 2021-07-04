@@ -51,6 +51,17 @@ module.exports = app => {
         })
         const compactEvents = _.compact(events)
         const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId')
+        uniqueEvents.forEach(({ surveyId, email }) => {
+            Survey.updateOne({
+                _id: surveyId,
+                recipients: {
+                    $elemMatch: { email: email, responded: false }
+                }
+            }, {
+                $inc: { [choice]: 1 },
+                $set: { 'recipients.$.responded': true }
+            }).exec()
+        })
         console.log(uniqueEvents);
        
         res.send({})
