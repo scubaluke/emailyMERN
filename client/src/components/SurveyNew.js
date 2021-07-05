@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import SurveyForm from './SurveyForm'
-import SurveyFormReview from './SurveyFormReview'
+import SurveyForm from './surveys/SurveyForm'
+import SurveyFormReview from './surveys/SurveyFormReview'
 import { reduxForm } from 'redux-form'
 
 
